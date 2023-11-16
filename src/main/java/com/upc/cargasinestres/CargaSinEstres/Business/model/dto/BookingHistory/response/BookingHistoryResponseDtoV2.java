@@ -3,7 +3,9 @@ package com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.Chat.response.ChatResponseDto;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.Client.response.ClientResponseDto;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.Company.response.CompanyResponseDto;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

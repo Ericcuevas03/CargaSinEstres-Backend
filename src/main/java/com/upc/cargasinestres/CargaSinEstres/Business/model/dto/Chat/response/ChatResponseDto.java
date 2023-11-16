@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ChatResponseDto {
 
-    private Long id;
+//    private Long id;
     private String user;
     private String message;
     private int messageOrder;

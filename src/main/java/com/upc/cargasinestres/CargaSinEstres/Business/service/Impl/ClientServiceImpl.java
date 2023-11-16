@@ -47,6 +47,7 @@ public class ClientServiceImpl implements IClientService{
         ClientValidation.ValidateClient(clientRequestDto);
 
         var newClient = modelMapper.map(clientRequestDto, Client.class);
+        newClient.setUserType("client");
         var createdClient = clientRepository.save(newClient);
         return modelMapper.map(createdClient, ClientResponseDto.class);
     }

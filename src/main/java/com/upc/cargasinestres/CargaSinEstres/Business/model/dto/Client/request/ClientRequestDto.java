@@ -29,5 +29,5 @@ public class ClientRequestDto {
 
     private String password;
 
-    private String userType;
+    //private String userType;
 }

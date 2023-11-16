@@ -1,5 +1,6 @@
 package com.upc.cargasinestres.CargaSinEstres.Business.service.Impl;
 
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.Chat.response.ChatResponseDto;
 import com.upc.cargasinestres.CargaSinEstres.Business.service.IBookingHistoryService;
 import com.upc.cargasinestres.CargaSinEstres.Business.Shared.validations.BookingHistoryValidation;
 import com.upc.cargasinestres.CargaSinEstres.Business.repository.IChatRepository;
@@ -94,6 +95,9 @@ public class BookingHistoryServiceImpl implements IBookingHistoryService {
     @Override
     public List<BookingHistoryResponseDtoV2> getBookingHistoryByClientId(Long clientId) {
         var existingBookingHistory = bookingHistoryRepository.findByClientId(clientId);
+        if(existingBookingHistory.isEmpty())
+            throw new ResourceNotFoundException("No se encuentran reservas para el cliente : " + clientId);
+
 
         var toShowBookingHistory = existingBookingHistory.stream()
                 .map(BookingHistory -> modelMapper.map(BookingHistory, BookingHistoryResponseDtoV2.class))
@@ -101,9 +105,14 @@ public class BookingHistoryServiceImpl implements IBookingHistoryService {
 
         for (BookingHistoryResponseDtoV2 bookingHistory : toShowBookingHistory){
             var chats = chatRepository.findByBookingHistoryId(bookingHistory.getId());
-            if(chats == null)
-                throw new ResourceNotFoundException("No existe una ningún mensaje");
-            bookingHistory.setChats(chats); //se setea la lista de chats para cada reserva
+            if (!chats.isEmpty()) {
+                var toShowChats = chats.stream()
+                        .map(chat -> modelMapper.map(chat, ChatResponseDto.class))
+                        .toList();
+                bookingHistory.setChats(toShowChats);
+            } else {
+                bookingHistory.setChats(null);
+            }
         }
 
         return toShowBookingHistory;
@@ -118,9 +127,25 @@ public class BookingHistoryServiceImpl implements IBookingHistoryService {
     @Override
     public List<BookingHistoryResponseDtoV2> getBookingHistoryByCompanyId(Long companyId) {
         var existingBookingHistory = bookingHistoryRepository.findByCompanyId(companyId);
-        return existingBookingHistory.stream()
+        if(existingBookingHistory.isEmpty())
+            throw new ResourceNotFoundException("No se encuentran reservas para la empresa : " + companyId);
+
+        var toShowBookingHistory =  existingBookingHistory.stream()
                 .map(BookingHistory -> modelMapper.map(BookingHistory, BookingHistoryResponseDtoV2.class))
                 .toList();
+
+        for (BookingHistoryResponseDtoV2 bookingHistory : toShowBookingHistory){
+            var chats = chatRepository.findByBookingHistoryId(bookingHistory.getId());
+            if (chats == null)
+                bookingHistory.setChats(null);
+            var toShowChats = chats.stream().map(Chat -> modelMapper.map(Chat, ChatResponseDto.class)).toList();
+
+            bookingHistory.setChats(toShowChats); //se setea la lista de chats para cada reserva
+        }
+
+        return toShowBookingHistory;
+
+
     }
 
 

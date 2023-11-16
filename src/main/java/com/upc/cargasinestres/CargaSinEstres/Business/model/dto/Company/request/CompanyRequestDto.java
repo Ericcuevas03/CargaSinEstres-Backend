@@ -21,7 +21,7 @@ public class CompanyRequestDto {
     private String NumeroContacto;
     private String direccion;
     private String password;
-    private String userType;
+    //private String userType;
     private boolean transporte;
     private boolean carga;
     private boolean embalaje;

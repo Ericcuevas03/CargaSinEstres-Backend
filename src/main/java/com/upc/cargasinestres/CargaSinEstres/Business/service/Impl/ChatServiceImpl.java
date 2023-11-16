@@ -32,9 +32,9 @@ public class ChatServiceImpl implements IChatService {
     }
 
     @Override
-    public ChatResponseDto createChat(Long bookingId, ChatRequestDto chatRequestDto){
+    public ChatResponseDto createChat(Long bookingId, String userType, ChatRequestDto chatRequestDto){
         var booking = bookingHistoryRepository.findById(bookingId)
-                .orElseThrow(()->new ResourceNotFoundException("No se encontró el historial de reserva con id" + bookingId));
+                .orElseThrow(()->new ResourceNotFoundException("No se encontró el historial de reserva con id " + bookingId));
 
         var newChat = modelMapper.map(chatRequestDto,Chat.class);
 
@@ -46,14 +46,21 @@ public class ChatServiceImpl implements IChatService {
         else
             newChat.setMessageOrder(previousChats.size()+1);
 
+        newChat.setBookingHistory(booking);
+        newChat.setUser(userType);
         var createdChat = chatRepository.save(newChat);
+
         return modelMapper.map(createdChat, ChatResponseDto.class);
 
     }
 
     @Override
     public List<ChatResponseDto> getChatsByBookingHistoryId(Long bookingHistoryId){
-        return chatRepository.findByBookingHistoryId(bookingHistoryId);
+        var chats = chatRepository.findByBookingHistoryId(bookingHistoryId);
+
+        return chats.stream()
+                .map(chat -> modelMapper.map(chat, ChatResponseDto.class))
+                .toList();
     }
 
 

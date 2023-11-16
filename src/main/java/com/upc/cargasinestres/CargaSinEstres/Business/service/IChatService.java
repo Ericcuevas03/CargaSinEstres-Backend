@@ -23,7 +23,7 @@ public interface IChatService {
      * @param chatRequestDto The chat information
      * @return The created chat information
      */
-    public abstract ChatResponseDto createChat(Long bookingId, ChatRequestDto chatRequestDto);
+    public abstract ChatResponseDto createChat(Long bookingId, String userType, ChatRequestDto chatRequestDto);
 
     /**
      * Get all the chats by booking history id

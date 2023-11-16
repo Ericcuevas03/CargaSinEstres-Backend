@@ -58,8 +58,5 @@ public class ClientValidation {
             throw new ValidationException("El celular debe contener solo dígitos enteros");
         }
 
-        if(clientRequestDto.getUserType()== null || clientRequestDto.getUserType().isEmpty()){
-            throw new ValidationException("El tipo de usuario debe ser obligatorio");
-        }
     }
 }

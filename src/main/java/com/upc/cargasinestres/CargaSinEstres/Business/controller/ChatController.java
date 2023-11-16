@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * REST Chat controller for the management of chat related requests
@@ -34,8 +31,8 @@ public class ChatController {
      * */
     @Operation(summary = "Create a Chat")
     @PostMapping("bookingHistory/{id}/chat")
-    public ResponseEntity<ChatResponseDto> createChat(@PathVariable(name="id") Long bookingId, ChatRequestDto chatRequestDto){
-        var res = chatService.createChat(bookingId,chatRequestDto);
+    public ResponseEntity<ChatResponseDto> createChat(@PathVariable(name="id") Long bookingId, @RequestParam(name = "userType") String userType, ChatRequestDto chatRequestDto){
+        var res = chatService.createChat(bookingId, userType, chatRequestDto);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 

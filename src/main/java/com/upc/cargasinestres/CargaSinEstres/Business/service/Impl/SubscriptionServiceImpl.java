@@ -11,6 +11,8 @@ import com.upc.cargasinestres.CargaSinEstres.Shared.exception.ResourceNotFoundEx
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 /**
  * Implementation of the ISubscriptionService interface.
  * Handles the business logic for subscription operations.
@@ -41,6 +43,7 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
         subscription.setCompany(companyRepository.findById(companyId)
                 .orElseThrow(()-> new ResourceNotFoundException("No se encontro la empresa con id: "+companyId))); //Company of the subscription is set
 
+        subscription.setSubscriptionDate(LocalDate.now());
         var createdSubscription = subscriptionRepository.save(subscription); //saved in the DB
 
         return modelMapper.map(createdSubscription, SubscriptionResponseDto.class);

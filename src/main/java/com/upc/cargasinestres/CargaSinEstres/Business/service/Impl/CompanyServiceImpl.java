@@ -56,6 +56,7 @@ public class CompanyServiceImpl implements ICompanyService {
         CompanyValidation.ValidateCompany(companyRequestDto);
 
         var newCompany = modelMapper.map(companyRequestDto, Company.class);
+        newCompany.setUserType("company");
         var createdCompany = companyRepository.save(newCompany);
         return modelMapper.map(createdCompany, CompanyResponseDto.class);
     }

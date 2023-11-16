@@ -24,6 +24,6 @@ public interface IChatRepository extends JpaRepository<Chat, Long> {
      * @param bookingHistoryId - id of the booking history
      * @return a list of ChatResponseDto
      */
-    List<ChatResponseDto> findByBookingHistoryId(Long bookingHistoryId);
+    List<Chat> findByBookingHistoryId(Long bookingHistoryId);
 
 }
