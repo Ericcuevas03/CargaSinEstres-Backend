@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
  *     <li>direccion - The address of the client</li>
  *     <li>email - The email of the client</li>
  *     <li>password - The password of the client</li>
+ *     <li>userType - The userType of the client</li>
  * </ul>
  * @author Grupo1
  * @version 1.0
@@ -79,4 +80,9 @@ public class Client {
     @Column(name = "password", nullable = false)
     private String password;
 
+    /**
+     * The user type of client
+     */
+    @Column(name = "userType", nullable = false)
+    private String userType;
 }
