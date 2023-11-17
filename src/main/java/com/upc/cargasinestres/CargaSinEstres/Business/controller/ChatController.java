@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Tag(name="Chat Controller")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/")
 public class ChatController {
 

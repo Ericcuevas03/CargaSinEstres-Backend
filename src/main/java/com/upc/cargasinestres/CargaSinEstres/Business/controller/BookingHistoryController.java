@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Tag(name="BookingHistory Controller")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/")
 public class BookingHistoryController {
 

@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  */
 @Tag(name="Subscription Controller")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1")
 public class SubscriptionController {
 
