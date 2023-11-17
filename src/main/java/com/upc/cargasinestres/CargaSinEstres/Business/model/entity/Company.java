@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
  *     <li>montaje - If the company has montaje</li>
  *     <li>desmontaje - If the company has desmontaje</li>
  *     <li>description - The description of the company</li>
- *     <li>userType - The userType of the company</li>
  * </ul>
  * @author Grupo1
  * @version 1.0
@@ -120,12 +119,5 @@ public class Company {
      */
     @Column(name = "description", nullable = false)
     private String description;
-
-    /**
-     * The user type of company
-     */
-    @Column(name = "userType", nullable = false)
-    private String userType;
-
 
 }
