@@ -32,7 +32,6 @@ public class BookingHistoryResponseDto {
     private String status;
     private String Services;
     private int payment;
-    //private HiredCompany hiredCompany;
     private List<Chat> chats;
 
         /*

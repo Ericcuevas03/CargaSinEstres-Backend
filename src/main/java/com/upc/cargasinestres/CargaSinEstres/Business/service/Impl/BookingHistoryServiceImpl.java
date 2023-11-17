@@ -6,19 +6,20 @@ import com.upc.cargasinestres.CargaSinEstres.Business.Shared.validations.Booking
 import com.upc.cargasinestres.CargaSinEstres.Business.repository.IChatRepository;
 import com.upc.cargasinestres.CargaSinEstres.Shared.exception.ResourceNotFoundException;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDto;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV2;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV3;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.response.BookingHistoryResponseDtoV2;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.entity.BookingHistory;
 import com.upc.cargasinestres.CargaSinEstres.Business.repository.IBookingHistoryRepository;
 import com.upc.cargasinestres.CargaSinEstres.Business.repository.IClientRepository;
 import com.upc.cargasinestres.CargaSinEstres.Business.repository.ICompanyRepository;
+import com.upc.cargasinestres.CargaSinEstres.Shared.exception.ValidationException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -148,5 +149,68 @@ public class BookingHistoryServiceImpl implements IBookingHistoryService {
 
     }
 
+    /**
+     * Updates the payment field of a specific booking history.
+     *
+     * @param bookingHistoryId The ID of the booking history to be updated.
+     * @param bookingHistoryRequestDto The data for updating the payment of the booking history.
+     * @return The response of the updated booking history.
+     * @throws ResourceNotFoundException If the booking history with the given ID is not found.
+     * @throws ValidationException If the payment amount is not greater than 0.
+     */
+    @Override
+    public BookingHistoryResponseDtoV2 updateBookingHistoryPayment(Long bookingHistoryId, BookingHistoryRequestDtoV2 bookingHistoryRequestDto) {
+        // Buscar la reserva
+        var bookingHistory = bookingHistoryRepository.findById(bookingHistoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontró el historial de reserva con ID: " + bookingHistoryId));
+
+        // Validación
+        if(bookingHistoryRequestDto.getPayment() <= 0){
+            throw new ValidationException("El precio debe ser mayor a 0");
+        }
+
+        // Actualizar el campo "payment"
+        bookingHistory.setPayment(bookingHistoryRequestDto.getPayment());
+
+        // Guardar la reserva actualizada
+        var updatedBookingHistory = bookingHistoryRepository.save(bookingHistory);
+
+        // Retornar la respuesta actualizada
+        return modelMapper.map(updatedBookingHistory, BookingHistoryResponseDtoV2.class);
+    }
+
+    /**
+     * Updates the status field of a specific booking history.
+     *
+     * @param bookingHistoryId The ID of the booking history to be updated.
+     * @param bookingHistoryRequestDto The data for updating the status of the booking history.
+     * @return The response of the updated booking history.
+     * @throws ResourceNotFoundException If the booking history with the given ID is not found.
+     * @throws ValidationException If the new status is not "Finalizado".
+     */
+    @Override
+    public BookingHistoryResponseDtoV2 updateBookingHistoryStatus(Long bookingHistoryId, BookingHistoryRequestDtoV3 bookingHistoryRequestDto) {
+        // Buscar la reserva
+        var bookingHistory = bookingHistoryRepository.findById(bookingHistoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontró el historial de reserva con ID: " + bookingHistoryId));
+
+        // Validación
+        if(bookingHistory.getStatus().equals("Finalizado")){
+            throw new ValidationException("Esta reserva ya esta finalizada");
+        }
+
+        if(!(bookingHistoryRequestDto.getStatus().equals("Finalizado"))){
+            throw new ValidationException("El estado a enviar debe ser Finalizado");
+        }
+
+        // Actualizar el campo "payment"
+        bookingHistory.setStatus(bookingHistoryRequestDto.getStatus());
+
+        // Guardar la reserva actualizada
+        var updatedBookingHistory = bookingHistoryRepository.save(bookingHistory);
+
+        // Retornar la respuesta actualizada
+        return modelMapper.map(updatedBookingHistory, BookingHistoryResponseDtoV2.class);
+    }
 
 }

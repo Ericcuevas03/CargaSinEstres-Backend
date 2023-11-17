@@ -1,6 +1,8 @@
 package com.upc.cargasinestres.CargaSinEstres.Business.service;
 
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDto;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV2;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV3;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.response.BookingHistoryResponseDtoV2;
 
 import java.util.List;
@@ -15,6 +17,12 @@ public interface IBookingHistoryService {
 
     //get all bookingHistory for a company by Id
     public abstract List<BookingHistoryResponseDtoV2> getBookingHistoryByCompanyId(Long id);
+
+    //update bookingHistory payment
+    BookingHistoryResponseDtoV2 updateBookingHistoryPayment(Long bookingHistoryId, BookingHistoryRequestDtoV2 bookingHistoryRequestDto);
+
+    //update bookingHistory status
+    BookingHistoryResponseDtoV2 updateBookingHistoryStatus(Long bookingHistoryId, BookingHistoryRequestDtoV3 bookingHistoryRequestDto);
 
     //update bookingHistory chat
 

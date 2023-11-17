@@ -122,10 +122,7 @@ public class BookingHistory {
      * The payment of the booking history.
      */
     @Column(name="payment")
-    private int payment; //was an entity
-
-    /*@OneToOne(cascade = CascadeType.ALL)
-    private HiredCompany hiredCompany;*/
+    private int payment;
 
     /**
      * The chats of the booking history.

@@ -27,8 +27,6 @@ public class BookingHistoryRequestDto {
     private Date movingDate;
     private String movingTime;
     private String Services;
-    //private Payment payment;
-    //private HiredCompany hiredCompany;
 
     /*
     private Long id;  -------------------------------

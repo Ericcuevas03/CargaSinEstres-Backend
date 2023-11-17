@@ -1,6 +1,8 @@
 package com.upc.cargasinestres.CargaSinEstres.Business.controller;
 
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDto;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV2;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV3;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.response.BookingHistoryResponseDtoV2;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -8,7 +10,6 @@ import com.upc.cargasinestres.CargaSinEstres.Business.service.IBookingHistorySer
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -71,6 +72,35 @@ public class BookingHistoryController {
     @GetMapping("/bookingHistory/company/{id}")
     public ResponseEntity<List<BookingHistoryResponseDtoV2>> getBookingHistoryByCompanyId(@PathVariable(name="id") Long id){
         var res = bookingHistoryService.getBookingHistoryByCompanyId(id);
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+
+    /**
+     * Updates the payment field of a specific booking history.
+     *
+     * @param bookingHistoryId The ID of the booking history to be updated.
+     * @param bookingHistoryRequestDtoV2 The data for updating the booking history.
+     * @return The response of the updated booking history.
+     */
+    @Operation(summary = "Update the payment of a Booking History")
+    @PatchMapping("/bookingHistory/{id}/payment")
+    public ResponseEntity<BookingHistoryResponseDtoV2> updateBookingHistoryPayment(@PathVariable(name = "id") Long bookingHistoryId, @RequestBody BookingHistoryRequestDtoV2 bookingHistoryRequestDtoV2) {
+        var res = bookingHistoryService.updateBookingHistoryPayment(bookingHistoryId, bookingHistoryRequestDtoV2);
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    /**
+     * Updates the status field of a specific booking history.
+     *
+     * @param bookingHistoryId The ID of the booking history to be updated.
+     * @param bookingHistoryRequestDtoV3 The data status for updating the booking history.
+     * @return The response of the updated booking history.
+     */
+    @Operation(summary = "Update the status of a Booking History")
+    @PatchMapping("/bookingHistory/{id}/status")
+    public ResponseEntity<BookingHistoryResponseDtoV2> updateBookingHistoryPayment(@PathVariable(name = "id") Long bookingHistoryId, @RequestBody BookingHistoryRequestDtoV3 bookingHistoryRequestDtoV3) {
+        var res = bookingHistoryService.updateBookingHistoryStatus(bookingHistoryId, bookingHistoryRequestDtoV3);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
