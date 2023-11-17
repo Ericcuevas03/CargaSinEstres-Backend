@@ -99,7 +99,7 @@ public class BookingHistoryController {
      */
     @Operation(summary = "Update the status of a Booking History")
     @PatchMapping("/bookingHistory/{id}/status")
-    public ResponseEntity<BookingHistoryResponseDtoV2> updateBookingHistoryPayment(@PathVariable(name = "id") Long bookingHistoryId, @RequestBody BookingHistoryRequestDtoV3 bookingHistoryRequestDtoV3) {
+    public ResponseEntity<BookingHistoryResponseDtoV2> updateBookingHistoryStatus(@PathVariable(name = "id") Long bookingHistoryId, @RequestBody BookingHistoryRequestDtoV3 bookingHistoryRequestDtoV3) {
         var res = bookingHistoryService.updateBookingHistoryStatus(bookingHistoryId, bookingHistoryRequestDtoV3);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }

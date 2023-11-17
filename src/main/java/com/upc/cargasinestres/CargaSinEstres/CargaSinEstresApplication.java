@@ -31,7 +31,7 @@ public class CargaSinEstresApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/carga-sin-estres/api/v1/**")
-						.allowedOrigins("http://localhost:8080") //aquí va el link de tu frontend desplegado
+						.allowedOrigins("https://cargasinestres.zeabur.app") //aquí va el link de tu frontend desplegado
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH") // Permitir los métodos necesarios
 						.allowedHeaders("*"); // Permitir todos los encabezados
 			}
