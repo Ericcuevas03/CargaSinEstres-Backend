@@ -70,6 +70,7 @@ public class ClientController {
      * @return A ResponseEntity containing the created ClientResponseDto and HttpStatus.CREATED.
      */
     @Operation(summary = "Create a Client")
+    @CrossOrigin(origins = "*")
     @PostMapping("/clients")
     public ResponseEntity<ClientResponseDto> createClient(@RequestBody ClientRequestDto clientRequestDto) {
         var res = clientService.createClient(clientRequestDto);
@@ -84,6 +85,7 @@ public class ClientController {
      * @return A ResponseEntity containing the updated ClientResponseDto and HttpStatus.OK.
      */
     @Operation(summary = "Update a Client")
+    @CrossOrigin(origins = "*")
     @PutMapping("/clients/{id}")
     public ResponseEntity<ClientResponseDto> updateClient(@PathVariable(name="id") Long id, @RequestBody ClientRequestDto clientRequestDto){
         var res = clientService.updateClient(id, clientRequestDto);

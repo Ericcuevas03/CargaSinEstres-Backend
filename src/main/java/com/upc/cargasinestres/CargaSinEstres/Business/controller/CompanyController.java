@@ -81,6 +81,7 @@ public class CompanyController {
      * @return A ResponseEntity containing the updated CompanyResponseDto and HttpStatus OK.
      */
     @Operation(summary = "Update a Company")
+    @CrossOrigin(origins = "*")
     @PutMapping("/companies/{id}")
     public ResponseEntity<CompanyResponseDto> updateCompany(@PathVariable Long id, @RequestBody CompanyRequestDto companyRequestDto){
         var res = companyService.updateCompany(id, companyRequestDto);
