@@ -44,7 +44,6 @@ public class ClientController {
      * @return A ResponseEntity containing the list of ClientResponseDto and HttpStatus.OK.
      */
     @Operation(summary = "Get clients for login")
-    @CrossOrigin(origins = "*")
     @GetMapping("/clients")
     public ResponseEntity<ClientResponseDto> getClientForLogin(@RequestParam(name="Email") String email, @RequestParam(name="Password")String password){
         var res = clientService.getClientForLogin(email, password);
@@ -58,7 +57,6 @@ public class ClientController {
      * @return A ResponseEntity containing the ClientResponseDto and HttpStatus.OK.
      */
     @Operation(summary = "Get a client by Id")
-    @CrossOrigin(origins = "*")
     @GetMapping("/clients/{id}")
     public ResponseEntity<ClientResponseDto> getClientById(@PathVariable Long id){
         var res = clientService.getClientById(id);
@@ -72,7 +70,6 @@ public class ClientController {
      * @return A ResponseEntity containing the created ClientResponseDto and HttpStatus.CREATED.
      */
     @Operation(summary = "Create a Client")
-    @CrossOrigin(origins = "*")
     @PostMapping("/clients")
     public ResponseEntity<ClientResponseDto> createClient(@RequestBody ClientRequestDto clientRequestDto) {
         var res = clientService.createClient(clientRequestDto);
@@ -87,7 +84,6 @@ public class ClientController {
      * @return A ResponseEntity containing the updated ClientResponseDto and HttpStatus.OK.
      */
     @Operation(summary = "Update a Client")
-    @CrossOrigin(origins = "*")
     @PutMapping("/clients/{id}")
     public ResponseEntity<ClientResponseDto> updateClient(@PathVariable(name="id") Long id, @RequestBody ClientRequestDto clientRequestDto){
         var res = clientService.updateClient(id, clientRequestDto);

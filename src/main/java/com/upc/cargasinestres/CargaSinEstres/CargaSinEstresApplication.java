@@ -30,8 +30,8 @@ public class CargaSinEstresApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/api/v1/**")
-						.allowedOrigins("*") //aquí va el link de tu frontend desplegado
+				registry.addMapping("/carga-sin-estres/api/v1/**")
+						.allowedOrigins("http://localhost:4200") //aquí va el link de tu frontend desplegado
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH") // Permitir los métodos necesarios
 						.allowedHeaders("*"); // Permitir todos los encabezados
 			}

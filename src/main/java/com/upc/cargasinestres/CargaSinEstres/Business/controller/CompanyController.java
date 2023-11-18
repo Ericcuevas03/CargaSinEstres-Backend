@@ -49,7 +49,6 @@ public class CompanyController {
      * @return A ResponseEntity containing the CompanyResponseDto for the specified ID and HttpStatus OK.
      */
     @Operation(summary = "Get a company by Id")
-    @CrossOrigin(origins = "*")
     @GetMapping("/companies/{id}")
     public ResponseEntity<CompanyResponseDto> getCompanyById(@PathVariable Long id) {
         var res = companyService.getCompanyById(id);
@@ -57,7 +56,6 @@ public class CompanyController {
     }
 
     @Operation(summary = "Get a company for login")
-    @CrossOrigin(origins = "*")
     @GetMapping("/companiesForLogin")
     public ResponseEntity<CompanyResponseDto> getCompanyForLogin(@RequestParam(name="email") String email, @RequestParam(name="password")String password){
         var res = companyService.getCompanyForLogin(email, password);
