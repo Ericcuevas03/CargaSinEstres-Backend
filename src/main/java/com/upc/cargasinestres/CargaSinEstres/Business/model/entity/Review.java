@@ -37,13 +37,13 @@ public class Review {
     /**
      * The rating of the review.
      */
-    @Column(name = "rating", length = 22, nullable = false)
+    @Column(name = "rating", nullable = false)
     private int rating;
 
     /**
      * The comment of the review.
      */
-    @Column(name = "comment", length = 14, nullable = false)
+    @Column(name = "comment", length = 100, nullable = false)
     private String comment;
 
     /**

@@ -18,8 +18,9 @@ public class ReviewValidation {
         if(reviewRequestDto.getComment() == null || reviewRequestDto.getComment().trim().isEmpty()){
             reviewRequestDto.setComment("...");
         }
-        if(reviewRequestDto.getRating() == 0){
-            throw new ValidationException("El rating es obligatorio");
+
+        if(reviewRequestDto.getRating() == 0 || reviewRequestDto.getRating() < 0 || reviewRequestDto.getRating() > 5){
+            throw new ValidationException("El rating es obligatorio, y debe ser un valor entre 1 y 5");
         }
     }
 }

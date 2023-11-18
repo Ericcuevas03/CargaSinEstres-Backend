@@ -27,4 +27,5 @@ public class CompanyResponseDto {
     private boolean montaje;
     private boolean desmontaje;
     private int averageRating;
+    private String userType;
 }

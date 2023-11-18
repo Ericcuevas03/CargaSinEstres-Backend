@@ -4,6 +4,7 @@ import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.r
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV2;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV3;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.response.BookingHistoryResponseDtoV2;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.Chat.request.ChatRequestDto;
 
 import java.util.List;
 
@@ -25,6 +26,5 @@ public interface IBookingHistoryService {
     BookingHistoryResponseDtoV2 updateBookingHistoryStatus(Long bookingHistoryId, BookingHistoryRequestDtoV3 bookingHistoryRequestDto);
 
     //update bookingHistory chat
-
 
 }

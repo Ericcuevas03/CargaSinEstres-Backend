@@ -56,7 +56,7 @@ public class SecurityConfig {
         http.authenticationManager(authenticationManager);
 
         http.csrf(AbstractHttpConfigurer::disable);
-        http.cors(Customizer.withDefaults());
+        /*http.cors(Customizer.withDefaults());*/
 
         //se indica la clase que maneja excepciones
         http.exceptionHandling(exception -> exception.authenticationEntryPoint((request, response, authException) -> {

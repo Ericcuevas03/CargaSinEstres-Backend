@@ -53,11 +53,9 @@ public class ReviewController {
      * @return A ResponseEntity containing the created ReviewResponseDto and HttpStatus.CREATED.
      */
     @Operation(summary = "Create a Review")
-    @PostMapping("/reviews")
-    public ResponseEntity<ReviewResponseDto> createReview(@RequestParam(name = "idCompany") Long companyId, @RequestBody ReviewRequestDto reviewRequestDto){
+    @PostMapping("/reviews/{companyId}")
+    public ResponseEntity<ReviewResponseDto> createReview(@PathVariable(name = "companyId") Long companyId, @RequestBody ReviewRequestDto reviewRequestDto){
         var res = reviewService.createReview(companyId, reviewRequestDto);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
-
-
 }

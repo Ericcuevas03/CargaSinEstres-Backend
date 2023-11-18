@@ -17,5 +17,4 @@ public class ReviewResponseDto {
     private Long id;
     private int rating;
     private String comment;
-//    private Company company;
 }
