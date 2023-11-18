@@ -3,6 +3,8 @@ package com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.Chat.response.ChatResponseDto;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.Client.response.ClientResponseDto;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.Company.response.CompanyResponseDto;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.entity.Client;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.entity.Company;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,8 +26,8 @@ import java.util.List;
 @AllArgsConstructor
 public class BookingHistoryResponseDtoV2 {
     private Long id;
-    //private CompanyResponseDto company;
-    //private ClientResponseDto client;
+    private Company company;
+    private Client client;
     private LocalDate bookingDate;
     private String pickupAddress;
     private String destinationAddress;

@@ -33,7 +33,7 @@ public class JwtTokenProvider {
         var authenticatedUser = (User) authentication.getPrincipal();
 
         //in minutes
-        var expiryDate = new Date(new Date().getTime() + expiration * 60_000);
+        var expiryDate = new Date(new Date().getTime() + expiration * 100_000);
 
         //construye el token JWT
         return Jwts.builder()
