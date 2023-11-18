@@ -43,7 +43,7 @@ public class Review {
     /**
      * The comment of the review.
      */
-    @Column(name = "comment", length = 100, nullable = false)
+    @Column(name = "comment", nullable = false)
     private String comment;
 
     /**
