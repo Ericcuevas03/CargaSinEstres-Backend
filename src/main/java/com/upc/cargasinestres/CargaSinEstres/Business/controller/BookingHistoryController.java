@@ -3,6 +3,7 @@ package com.upc.cargasinestres.CargaSinEstres.Business.controller;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDto;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV2;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.request.BookingHistoryRequestDtoV3;
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.response.BookingHistoryResponseDto;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.response.BookingHistoryResponseDtoV2;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -45,7 +46,7 @@ public class BookingHistoryController {
      */
     @Operation(summary = "Create a Booking History")
     @PostMapping("/bookingHistory")
-    public ResponseEntity<BookingHistoryResponseDtoV2> createBookingHistory(@RequestParam(name = "idClient") Long clientId, @RequestParam(name = "idCompany") Long companyId, @RequestBody BookingHistoryRequestDto bookingHistoryRequestDto) {
+    public ResponseEntity<BookingHistoryResponseDto> createBookingHistory(@RequestParam(name = "idClient") Long clientId, @RequestParam(name = "idCompany") Long companyId, @RequestBody BookingHistoryRequestDto bookingHistoryRequestDto) {
         var res = bookingHistoryService.createBookingHistory(clientId, companyId, bookingHistoryRequestDto);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }

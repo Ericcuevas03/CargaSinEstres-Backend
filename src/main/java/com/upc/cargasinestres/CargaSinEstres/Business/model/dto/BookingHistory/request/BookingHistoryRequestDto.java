@@ -28,20 +28,4 @@ public class BookingHistoryRequestDto {
     private String movingTime;
     private String Services;
 
-    /*
-    private Long id;  -------------------------------
-    private Company company; -------------------------------
-    private Client client; -------------------------------
-    private LocalDate bookingDate;  -------------------------------
-    private String pickupAddress;   -------------------------------
-    private String destinationAddress; -------------------------------
-    private Date movingDate; -------------------------------
-    private Time movingTime; -------------------------------
-    private String status; -------------------------------
-    private String Services; -------------------------------
-    private Payment payment;
-    private HiredCompany hiredCompany;
-    private List<Chat> chats;
-     */
-
 }

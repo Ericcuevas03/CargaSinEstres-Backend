@@ -1,5 +1,6 @@
 package com.upc.cargasinestres.CargaSinEstres.Business.service.Impl;
 
+import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.BookingHistory.response.BookingHistoryResponseDto;
 import com.upc.cargasinestres.CargaSinEstres.Business.model.dto.Chat.response.ChatResponseDto;
 import com.upc.cargasinestres.CargaSinEstres.Business.service.IBookingHistoryService;
 import com.upc.cargasinestres.CargaSinEstres.Business.Shared.validations.BookingHistoryValidation;
@@ -60,7 +61,7 @@ public class BookingHistoryServiceImpl implements IBookingHistoryService {
      */
     //Method : POST
     @Override
-    public BookingHistoryResponseDtoV2 createBookingHistory(Long clientId, Long companyId, BookingHistoryRequestDto bookingHistoryRequestDto) {
+    public BookingHistoryResponseDto createBookingHistory(Long clientId, Long companyId, BookingHistoryRequestDto bookingHistoryRequestDto) {
         // Buscar la cuenta
         var client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new ResourceNotFoundException("No se encontró el cliente con ID: " + clientId));
@@ -84,7 +85,7 @@ public class BookingHistoryServiceImpl implements IBookingHistoryService {
         newBookingHistory.setMovingTime(movingTime);*/
 
         var createdBookingHistory = bookingHistoryRepository.save(newBookingHistory);
-        return modelMapper.map(createdBookingHistory, BookingHistoryResponseDtoV2.class);
+        return modelMapper.map(createdBookingHistory, BookingHistoryResponseDto.class);
     }
 
     /**
