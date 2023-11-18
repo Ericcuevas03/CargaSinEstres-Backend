@@ -44,6 +44,7 @@ public class ClientController {
      * @return A ResponseEntity containing the list of ClientResponseDto and HttpStatus.OK.
      */
     @Operation(summary = "Get clients for login")
+    @CrossOrigin(origins = "*")
     @GetMapping("/clients")
     public ResponseEntity<ClientResponseDto> getClientForLogin(@RequestParam(name="Email") String email, @RequestParam(name="Password")String password){
         var res = clientService.getClientForLogin(email, password);
@@ -57,6 +58,7 @@ public class ClientController {
      * @return A ResponseEntity containing the ClientResponseDto and HttpStatus.OK.
      */
     @Operation(summary = "Get a client by Id")
+    @CrossOrigin(origins = "*")
     @GetMapping("/clients/{id}")
     public ResponseEntity<ClientResponseDto> getClientById(@PathVariable Long id){
         var res = clientService.getClientById(id);
