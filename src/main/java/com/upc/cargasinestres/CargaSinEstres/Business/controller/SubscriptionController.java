@@ -34,13 +34,12 @@ public class SubscriptionController {
     /**
      * Handles the creation of a new subscription.
      *
-     * @param companyId               The ID of the company for which the subscription is created.
-     * @param subscriptionRequestDto The request data for creating the subscription.
+     idCompany     * @param subscriptionRequestDto The request data for creating the subscription.
      * @return ResponseEntity with the created subscription response or an error status.
      */
-    @PostMapping("/subscriptions")
-    public ResponseEntity<SubscriptionResponseDto> createSubscription(@RequestParam(name = "idCompany") Long companyId, @RequestBody SubscriptionRequestDto subscriptionRequestDto){
-        var res = subscriptionService.createSubscription(companyId, subscriptionRequestDto);
+    @PostMapping("/subscriptions/{idCompany}")
+    public ResponseEntity<SubscriptionResponseDto> createSubscription(@PathVariable Long idCompany, @RequestBody SubscriptionRequestDto subscriptionRequestDto){
+        var res = subscriptionService.createSubscription(idCompany, subscriptionRequestDto);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
