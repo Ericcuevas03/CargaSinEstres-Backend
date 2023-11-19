@@ -32,7 +32,7 @@ public class ChatController {
      * */
     @Operation(summary = "Create a Chat")
     @PostMapping("/bookingHistory/{id}/chat")
-    public ResponseEntity<ChatResponseDto> createChat(@PathVariable(name="id") Long bookingId, @RequestParam(name = "userType") String userType, ChatRequestDto chatRequestDto){
+    public ResponseEntity<ChatResponseDto> createChat(@PathVariable(name="id") Long bookingId, @RequestParam(name = "userType") String userType,  @RequestBody ChatRequestDto chatRequestDto){
         var res = chatService.createChat(bookingId, userType, chatRequestDto);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
